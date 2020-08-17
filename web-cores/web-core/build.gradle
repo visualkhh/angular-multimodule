@@ -1,0 +1,39 @@
+bootJar { enabled = false }
+jar { enabled = true }
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.2.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.2.1.RELEASE'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '2.3.1.RELEASE'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version: '2.3.1.RELEASE'
+//    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+    compile group: 'org.apache.oltu.oauth2', name: 'org.apache.oltu.oauth2.client', version: '1.0.1'
+
+
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+//    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+
+}
+
+def angularDir = project(':web-core-angular').projectDir
+generateTypeScript {
+    customTypeNaming = [
+//            'org.springframework.security.core.userdetails.UserDetails:UserDetailsOfSpring',
+//            'com.omnicns.medicine.domain.security.Auth:UserDetailAuth',
+//            'com.omnicns.medicine.model.security.GrantedObjAuthority:UserDetailGrantedObjAuthority'
+    ]
+    classPatterns = [
+            'com.genome.dx.wcore.domain.**',
+            'com.genome.dx.wcore.model.**',
+
+            'com.genome.dx.core.domain.**',
+            'com.genome.dx.core.model.**',
+    ]
+    //http://www.habarta.cz/typescript-generator/doc/ModulesAndNamespaces.html
+    outputFileType = 'implementationFile'  //values are: declarationFile (.d.ts) or implementationFile (.ts)
+    jsonLibrary = 'jackson2'
+    outputKind = 'module'  // values are: global, module, ambientModule
+    outputFile = "${angularDir}/common/models.ts"
+    scanSpringApplication = true
+    generateSpringApplicationClient = true
+}

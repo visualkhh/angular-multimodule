@@ -1,0 +1,131 @@
+<div class="authLayout" >
+
+
+    <div>
+        <img src="/assets/img/logo_1.png" width="20%"> <img src="/assets/img/logo_2.png" width="20%">
+    </div>
+
+
+    <div id="content" class="container">
+        <div style="margin-top: 100px;"></div>
+        <div class="row" style="margin: 20px;">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <form #from [formGroup]="formdata" action="/security/sign-in" method="post" class="smart-form client-form" (ngSubmit)="submit(formdata.value)">
+                    <input type="hidden" name="_csrf" formControlName="_csrf">
+                    <!--                    <header>-->
+                    <!--                        {{'Login' | i18n}}-->
+                    <!--                    </header>-->
+                    <fieldset>
+                        <section>
+                            <label class="label">{{'Id' | i18n}}</label>
+                            <label class="input"> <i class="icon-append fa fa-user"></i>
+                                <input type="text" name="username" formControlName="username">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>
+                                    Please enter id</b></label>
+                        </section>
+                        <section>
+                            <label class="label"> {{'Password' | i18n}}</label>
+                            <label class="input"> <i class="icon-append fa fa-lock"></i>
+                                <input type="password" name="password" formControlName="password">
+                                <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter
+                                    your password</b> </label>
+
+                            <div class="note" style="color:red">
+                                {{ note | i18n }}
+                                <!--<a routerLink="/auth/forgot-password">Forgot password?</a> -->
+                            </div>
+                        </section>
+                        <!--
+                      <section>
+                        <label class="checkbox">
+                          <input type="checkbox" name="remember" checked>
+                          <i></i>Stay signed in</label>
+                      </section>
+                      -->
+                    </fieldset>
+                    <footer style="background: rgb(255, 255, 255); border-top: 0px solid">
+                        <input class="btn btn-primary" type="submit" value=" {{'Login' | i18n}}">
+                        <!--                        <input class="btn btn-primary" type="submit" [disabled]="!formdata.valid" value="Log In">-->
+                        <!--                        <input class="btn btn-primary" type="submit" value=" {{'Login' | i18n}}">-->
+                        <!--          <input type="submit" (click)="login($event)" class="btn btn-primary">-->
+                        <!--            Sign in-->
+                        <!--          </input>-->
+                    </footer>
+                </form>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+<!--        <div class="row">-->
+<!--            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">-->
+<!--            </div>-->
+<!--            <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">-->
+<!--                <div style="margin-bottom: 10px">-->
+<!--                    <img src="/assets/img/title.png" width="150">-->
+<!--                </div>-->
+<!--                <div class="well no-padding">-->
+<!--                    <form class="smart-form client-form">-->
+<!--                        <header>-->
+<!--                            Sign In-->
+<!--                        </header>-->
+<!--                        <fieldset>-->
+<!--                            <section>-->
+<!--                                <label class="label">ID</label>-->
+<!--                                <label class="input"> <i class="icon-append fa fa-user"></i>-->
+<!--                                    <input type="text" name="username" [(ngModel)]="form.username" data-smart-validate-input="" data-required="" data-email="" data-message-required="Please enter your email address" data-message-email="Please enter a VALID email address">-->
+<!--                                    <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i>-->
+<!--                                        Please enter email address/username</b></label>-->
+<!--                            </section>-->
+<!--                            <section>-->
+<!--                                <label class="label">Password</label>-->
+<!--                                <label class="input"> <i class="icon-append fa fa-lock"></i>-->
+<!--                                    <input type="password" name="password" [(ngModel)]="form.password" data-smart-validate-input="" data-required="" data-minlength="3" data-maxnlength="20" data-message="Please enter your email password">-->
+<!--                                    <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter-->
+<!--                                        your password</b> </label>-->
+
+<!--                                <div class="note" style="color:red">-->
+<!--                                    {{ note }}-->
+<!--                                    &lt;!&ndash;<a routerLink="/auth/forgot-password">Forgot password?</a> &ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </section>-->
+<!--                            &lt;!&ndash;-->
+<!--                          <section>-->
+<!--                            <label class="checkbox">-->
+<!--                              <input type="checkbox" name="remember" checked>-->
+<!--                              <i></i>Stay signed in</label>-->
+<!--                          </section>-->
+<!--                          &ndash;&gt;-->
+<!--                        </fieldset>-->
+<!--                        <footer style="text-align: center">-->
+<!--                            <button (click)="login($event)" class="btn btn-primary" style="float: none; width: 60%; height: 40px;">-->
+<!--                                LOGIN-->
+<!--                            </button>-->
+<!--                        </footer>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;<h5 class="text-center"> - Or sign in using -</h5>&ndash;&gt;-->
+<!--                &lt;!&ndash;<ul class="list-inline text-center">&ndash;&gt;-->
+<!--                &lt;!&ndash;<li>&ndash;&gt;-->
+<!--                &lt;!&ndash;<a (click)="(null)" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>&ndash;&gt;-->
+<!--                &lt;!&ndash;</li>&ndash;&gt;-->
+<!--                &lt;!&ndash;<li>&ndash;&gt;-->
+<!--                &lt;!&ndash;<a (click)="(null)" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>&ndash;&gt;-->
+<!--                &lt;!&ndash;</li>&ndash;&gt;-->
+<!--                &lt;!&ndash;<li>&ndash;&gt;-->
+<!--                &lt;!&ndash;<a (click)="(null)" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>&ndash;&gt;-->
+<!--                &lt;!&ndash;</li>&ndash;&gt;-->
+<!--                &lt;!&ndash;</ul>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+<!--    <div class="page-footer">-->
+<!--        <div class="row">-->
+<!--            <div class="col-sm-12">-->
+<!--                <img src="/assets/img/logo_3.png" height="21" style="float: right; margin-left: 15px">-->
+<!--                <span class="txt-color-grayDark" style="float: right">Copyright © sinc 2014 by OMNI C&S OMNIFIT All rights reserved</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>

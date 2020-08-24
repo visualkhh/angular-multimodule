@@ -11,18 +11,15 @@ src/style.css import
 // import $ from 'jquery';
 // import 'jquery';
 declare var $: any;
-import '@web-core/libs/Customizable-Loading-Modal-Plugin/js/modal-loading.js';
 import '@web-core/libs/bootstrap-toaster/dist/js/bootstrap-toaster.js';
 // require('../../libs/Customizable-Loading-Modal-Plugin/css/modal-loading.css');
 // require('../../libs/Customizable-Loading-Modal-Plugin/css/modal-loading-animate.css');
 // const Loading = require('external-lib/Customizable-Loading-Modal-Plugin/js/modal-loading.js');
-
 @Injectable()
 export class AlertService {
     // private progress: any;
 
     constructor() {
-        console.log('AlertService constructor')
     }
 
     // smallBox(data, cb?) {
@@ -80,6 +77,7 @@ export class AlertService {
 
     dangerAlert(title: string, content: string) {
         // debugger;
+        console.log("------?danger",title, content)
         new $.toaster({
             content: content,
             title: title,

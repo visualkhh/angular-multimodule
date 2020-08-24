@@ -7,6 +7,7 @@ import {CrisisListComponent} from "@app/features/crisis-list/crisis-list.compone
 import {WebCoreListComponent} from "@web-core-app/features/web-core-list/web-core-list.component";
 import { MainLayoutComponent } from "@app/shared/layout/app-layouts/main-layout.component";
 import {EmptyLayoutComponent} from "@web-core-app/layouts/empty/layout/empty-layout.component";
+import {PageNotFoundComponent} from "@app/features/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
@@ -39,25 +40,25 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: "web",
-    component: WebCoreListComponent,
-  },
-  {
-    path: "m",
-    component: MainLayoutComponent,
-  },
-  {
-    path: "c",
-    component: CrisisListComponent,
-  }
+  // {
+  //   path: "web",
+  //   component: WebCoreListComponent,
+  // },
+  // {
+  //   path: "m",
+  //   component: MainLayoutComponent,
+  // },
+  // {
+  //   path: "c",
+  //   component: CrisisListComponent,
+  // }
 
   // {
   //   path: "auth",
   //   component: AuthLayoutComponent,
   //   loadChildren: "./features/auth/auth.module#AuthModule"
   // },
-  // { path: "**", redirectTo: "miscellaneous/error404" }
+  {path: "**", component: PageNotFoundComponent}
 
 ];
 

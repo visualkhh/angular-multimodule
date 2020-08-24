@@ -455,3 +455,4 @@ gradle-app.setting
 #**/*-angular/src/**/*.map
 #**/*-angular/**/*.ts
 #!**/*-angular/src/*.ts
+/web-cores/web-core-angular/node_modules/

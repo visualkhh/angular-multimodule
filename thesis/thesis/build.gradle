@@ -20,55 +20,58 @@ def webappDir = "$projectDir/src/main/resources/webapp"
 def templatesDir = "$projectDir/src/main/resources/templates"
 def angularDir = project(':thesis-angular').projectDir
 
-task wow() {
-    println "wow--> ${angularDir}"
-}
 
 task buildWebAppAngular(type:Exec, dependsOn: 'installAngular') {
-    def targetNodePath="";
-    if(project.hasProperty('nodePath')){
-        targetNodePath = "$nodePath/";
+    doLast {
+        def targetNodePath = "";
+        if (project.hasProperty('nodePath')) {
+            targetNodePath = "$nodePath/";
+        }
+        // installAngular should be run prior to this taskª
+//    println("workingDir: ${angularDir}")
+        workingDir "$angularDir"
+        inputs.dir "$angularDir"
+        // Add task to the standard build group
+        group = BasePlugin.BUILD_GROUP
+        // ng doesn't exist as a file in windows -> ng.cmd
+//    println('targetNodePath: ' + targetNodePath)
+        commandLine "${targetNodePath}node", "node_modules/@angular/cli/bin/ng", "build"
     }
-    // installAngular should be run prior to this taskª
-    println("workingDir: ${angularDir}")
-    workingDir "$angularDir"
-    inputs.dir "$angularDir"
-    // Add task to the standard build group
-    group = BasePlugin.BUILD_GROUP
-    // ng doesn't exist as a file in windows -> ng.cmd
-    println('targetNodePath: ' + targetNodePath)
-    commandLine "${targetNodePath}node", "node_modules/@angular/cli/bin/ng", "build"
 }
 
 task buildAngular(type: Copy, dependsOn: 'buildWebAppAngular') {
-    from "${webappDir}/index.html"
-    into "${templatesDir}"
-    print("buildAngular END : ${webappDir} ${templatesDir}")
+    doLast {
+        from "${webappDir}/index.html"
+        into "${templatesDir}"
+        print("buildAngular END : ${webappDir} ${templatesDir}")
+    }
 }
 
 
 task installAngular(type: Exec) {
-    def targetNodePath="";
-    if(project.hasProperty('nodePath')){
-        targetNodePath = "$nodePath/";
-    }
-    dependsOn generateTypeScript
-    workingDir "$angularDir"
-    inputs.dir "$angularDir"
-    group = BasePlugin.BUILD_GROUP
-    if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")){
-        commandLine "${targetNodePath}npm.cmd", "install"
-    } else {
-        commandLine "${targetNodePath}npm", "install"
+    doLast {
+        def targetNodePath = "";
+        if (project.hasProperty('nodePath')) {
+            targetNodePath = "$nodePath/";
+        }
+        dependsOn generateTypeScript
+        workingDir "$angularDir"
+        inputs.dir "$angularDir"
+        group = BasePlugin.BUILD_GROUP
+        if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
+            commandLine "${targetNodePath}npm.cmd", "install"
+        } else {
+            commandLine "${targetNodePath}npm", "install"
+        }
     }
 }
 
 generateTypeScript {
     dependsOn ':web-core:generateTypeScript'
     customTypeNaming = [
-//            'org.springframework.security.core.userdetails.UserDetails:UserDetailsOfSpring',
-//            'com.omnicns.medicine.domain.security.Auth:UserDetailAuth',
-//            'com.omnicns.medicine.model.security.GrantedObjAuthority:UserDetailGrantedObjAuthority'
+            'org.springframework.security.core.userdetails.UserDetails:UserDetailsOfSpring',
+//            'com.genome.dx.wcore.domain.security.Auth:UserDetailAuth',
+            'com.genome.dx.wcore.model.security.GrantedObjAuthority:UserDetailGrantedObjAuthority'
     ]
     classPatterns = [
             'com.genome.dx.thesis.domain.**',

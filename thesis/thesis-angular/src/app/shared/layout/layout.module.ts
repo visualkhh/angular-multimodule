@@ -9,6 +9,7 @@ import {HeaderModule} from "./header/header.module";
 import {FooterComponent} from "./footer/footer.component";
 import {NavigationModule} from "./navigation/navigation.module";
 import {GraphModule} from "@app/features/graph/graph.module";
+import {PageNotFoundComponent} from "@app/features/page-not-found/page-not-found.component";
 // import {RibbonComponent} from "./ribbon/ribbon.component";
 // import {ShortcutComponent} from "./shortcut/shortcut.component";
 // import {ToggleActiveDirective} from "../utils/toggle-active.directive";
@@ -31,6 +32,7 @@ import {GraphModule} from "@app/features/graph/graph.module";
     MainLayoutComponent,
     EmptyLayoutComponent,
     FooterComponent,
+    PageNotFoundComponent,
   ],
   exports:[
     MainLayoutComponent,

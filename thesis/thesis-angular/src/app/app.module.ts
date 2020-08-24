@@ -29,11 +29,7 @@ bootstrap - 루트 컴포넌트라고 하는 메인 어플리케이션의 뷰를
         ServiceModule
     ],
     declarations: [
-        AppComponent,
-        CrisisListComponent,
-        HeroesListComponent,
-        PageNotFoundComponent,
-        WebCoreListComponent,
+        AppComponent
     ],
     providers: [],
     exports: [

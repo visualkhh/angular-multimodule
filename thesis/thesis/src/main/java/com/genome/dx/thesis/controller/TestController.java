@@ -1,14 +1,13 @@
 package com.genome.dx.thesis.controller;
 
-import com.genome.dx.core.domain.CoreBrd;
-import com.genome.dx.core.repository.CoreBrdRepository;
+import com.genome.dx.core.domain.Brd;
+import com.genome.dx.core.repository.BrdRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.core.publisher.Mono;
 
 import java.util.List;
 
@@ -20,11 +19,11 @@ public class TestController {
     public static final String URI_PREFIX = "/test";
 
     @Autowired
-    CoreBrdRepository coreBrdRepository;
+    BrdRepository coreBrdRepository;
 
     @GetMapping({"", "/"})
-    public Mono<String> index() {
-        return Mono.just("test index");
+    public String index() {
+        return "test index";
     }
 
     @GetMapping("/sleep")
@@ -34,7 +33,7 @@ public class TestController {
     }
 
     @GetMapping("/brd")
-    public List<CoreBrd> brd() {
+    public List<Brd> brd() {
         return coreBrdRepository.findAll();
     }
     @GetMapping("/throw")

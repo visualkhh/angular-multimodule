@@ -18,22 +18,4 @@ external-communication-core:
     connectionTimeout: 10000
 project:
   properties:
-    nrfHeartBeatIntervalPercent: 80
-    nrfSubscriptionIntervalPercent: 80
-    nrfOauth2TokenIntervalPercent: 80
-    nrfTimeOutMillisecond: 5000
-    amfTimeOutMillisecond: 5000
-    nrfSubscriptionJumpValidityMillisecond: 31557600000 # 1year
-    nrfSubscriptionNfStatusNotificationUrl: http://${project.cbcf-ip}:49101/cbcf/v1/nf-status/AMF
-    nrfPath-NFInstances-Store: "/nnrf-nfm/v1/nf-instances"
-    nrfPath-NFInstances-Document: "/nnrf-nfm/v1/nf-instances/{nfInstanceID}"
-    nrfPath-Subscriptions-Collection: "/nnrf-nfm/v1/subscriptions"
-    nrfPath-Subscriptions-Document: "/nnrf-nfm/v1/subscriptions/{subscriptionID}"
-    nrfPath-Oauth2-Token: "/oauth2/token"
-    nrfPath-Discovery-Store: "/nnrf-disc/v1/nf-instances"
-    amfPath-Non-UE-N2Messages-Collection-Document: "/namf-comm/v1/non-ue-n2-messages/transfer"
-    amfApiRoot: http://${project.cbcf-ip}:39090
-    nrfApiRoot: http://${project.cbcf-ip}:38080
-    amfEnableOauth2Token: true
-#    amfNon-UE-N2Messages-Transfer-DelayMillisecond: 5000
-#    amfApiRoot: "http://nghttp2.org"
+    angular-path: classpath:/webapp

@@ -7,13 +7,13 @@ import {
   OnChanges,
   SimpleChanges,
   DoCheck
-} from "@angular/core";
+} from '@angular/core';
 
-import "script-loader!smartadmin-plugins/flot-bundle/flot-bundle.min.js";
+import 'script-loader!smartadmin-plugins/flot-bundle/flot-bundle.min.js';
 
 declare var $: any;
 @Component({
-  selector: "web-core-flot-chart",
+  selector: 'web-core-flot-chart',
   template: `
     <div class="sa-flot-chart" [ngStyle]="{width: width, height: height}">&nbsp;</div>
   `,
@@ -33,11 +33,11 @@ declare var $: any;
 export class FlotChartComponent
   implements AfterContentInit, OnChanges, DoCheck {
   @Input() public data: any;
-  @Input() public graphClass: string = "";
+  @Input() public graphClass = '';
   @Input() public options: any;
   @Input() public type: string;
-  @Input() width: string = "100%";
-  @Input() height: string = "250px";
+  @Input() width = '100%';
+  @Input() height = '250px';
   private hostVisible = false;
 
   constructor(private el: ElementRef) {}
@@ -62,9 +62,9 @@ export class FlotChartComponent
   }
 
   ngDoCheck() {
-    let visible = this.el.nativeElement.children[0].offsetParent !== null;
+    const visible = this.el.nativeElement.children[0].offsetParent !== null;
     if (this.hostVisible != visible) {
-      if (visible) this.render(this.data);
+      if (visible) { this.render(this.data); }
       this.hostVisible = visible;
     }
   }

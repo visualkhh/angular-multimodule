@@ -1,0 +1,12 @@
+.authLayout {
+    background-image: url("/assets/img/bg.jpg");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 1190px;
+    /*height: 100%;*/
+    /*height: 100vh;*/
+}
+
+

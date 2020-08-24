@@ -1,8 +1,8 @@
 import {Component, AfterContentInit, ElementRef, Input} from '@angular/core';
 
-import {presets} from './chart-js.presets'
+import {presets} from './chart-js.presets';
 
-declare var Chart:any;
+declare var Chart: any;
 
 @Component({
 
@@ -16,34 +16,34 @@ declare var Chart:any;
 })
 export class ChartJsComponent implements AfterContentInit {
 
-  @Input() public data:any;
-  @Input() public type:string;
-  @Input() width:string = '100%';
+  @Input() public data: any;
+  @Input() public type: string;
+  @Input() width = '100%';
 
 
 
-  constructor(private el:ElementRef) {
+  constructor(private el: ElementRef) {
   }
 
   ngAfterContentInit() {
-    import('chart.js').then((chartJs:any)=> {
-      this.render()
-    })
+    import('chart.js').then((chartJs: any) => {
+      this.render();
+    });
   }
 
   render(){
-    let ctx = this.getCtx();
-    let data = this.data;
+    const ctx = this.getCtx();
+    const data = this.data;
 
-    if(data.datasets && data.datasets.length && presets[this.type] && presets[this.type].dataset){
-      data.datasets =  data.datasets.map((it)=>{
-        return Object.assign({}, presets[this.type].dataset, it)
-      })
+    if (data.datasets && data.datasets.length && presets[this.type] && presets[this.type].dataset){
+      data.datasets =  data.datasets.map((it) => {
+        return Object.assign({}, presets[this.type].dataset, it);
+      });
     }
 
-    let chart = new Chart(ctx, {
+    const chart = new Chart(ctx, {
       type: this.type,
-      data: data,
+      data,
       options: presets[this.type] ? presets[this.type].options : {}
     });
     chart.update();
@@ -56,12 +56,12 @@ export class ChartJsComponent implements AfterContentInit {
 
   randomScalingFactor() {
     return Math.round(Math.random() * 100);
-  };
+  }
   randomColorFactor() {
     return Math.round(Math.random() * 255);
-  };
+  }
   randomColor(opacity) {
     return 'rgba(' + this.randomColorFactor() + ',' + this.randomColorFactor() + ',' + this.randomColorFactor() + ',' + (opacity || '.3') + ')';
-  };
+  }
 
 }

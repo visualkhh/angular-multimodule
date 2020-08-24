@@ -5,13 +5,13 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 // import {Component, EventEmitter, OnInit, Output, ViewChild} from '@target_angular_project/@angular/core';
 // import {Router} from "@angular/router";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 // import {BsModalRef, BsModalService} from "@target/ngx-bootstrap/modal";
 // import {BsModalRef, BsModalService} from "../../../../../../../thesis/thesis-angular/node_modules/ngx-bootstrap/modal";
 // import {BsModalRef, BsModalService} from "@tar /ngx-bootstrap/modal";
 
 @Component({
-  selector: 'webCore-wow-detail',
+  selector: 'web-core-wow-detail',
   templateUrl: './wow-detail.component.html',
   styleUrls: ['./wow-detail.component.css']
 })

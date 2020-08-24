@@ -1,0 +1,67 @@
+processResources {
+    dependsOn "buildAngular"
+}
+
+def webappDir = "$projectDir/src/main/resources/webapp"
+def templatesDir = "$projectDir/src/main/resources/templates"
+def angularDir = project(':gmp-angular').projectDir
+
+
+task buildWebAppAngular(type:Exec, dependsOn: 'installAngular') {
+    doFirst {
+        def targetNodePath = "";
+        if (project.hasProperty('nodePath')) {
+            targetNodePath = "$nodePath/";
+        }
+        workingDir "$angularDir"
+        inputs.dir "$angularDir"
+        group = BasePlugin.BUILD_GROUP
+        commandLine "${targetNodePath}node", "node_modules/@angular/cli/bin/ng", "build"
+    }
+}
+
+task buildAngular(type: Copy, dependsOn: 'buildWebAppAngular') {
+    doFirst {
+        from "${webappDir}/index.html"
+        into "${templatesDir}"
+        print("buildAngular END : ${webappDir} ${templatesDir}")
+    }
+}
+
+
+task installAngular(type: Exec) {
+    doFirst {
+        def targetNodePath = "";
+        if (project.hasProperty('nodePath')) {
+            targetNodePath = "$nodePath/";
+        }
+        dependsOn generateTypeScript
+        workingDir "$angularDir"
+        inputs.dir "$angularDir"
+        group = BasePlugin.BUILD_GROUP
+        if (System.getProperty("os.name").toUpperCase().contains("WINDOWS")) {
+            commandLine "${targetNodePath}npm.cmd", "install"
+        } else {
+            commandLine "${targetNodePath}npm", "install"
+        }
+    }
+}
+
+generateTypeScript {
+    dependsOn ':web-core:generateTypeScript'
+    customTypeNaming = [
+            'org.springframework.security.core.userdetails.UserDetails:UserDetailsOfSpring',
+            'com.genome.dx.wcore.model.security.GrantedObjAuthority:UserDetailGrantedObjAuthority'
+    ]
+    classPatterns = [
+            'com.genome.dx.gmp.domain.**',
+            'com.genome.dx.gmp.model.**',
+    ]
+    //http://www.habarta.cz/typescript-generator/doc/ModulesAndNamespaces.html
+    outputFileType = 'implementationFile'  //values are: declarationFile (.d.ts) or implementationFile (.ts)
+    jsonLibrary = 'jackson2'
+    outputKind = 'module'  // values are: global, module, ambientModule
+    outputFile = "${angularDir}/generate/models.ts"
+    scanSpringApplication = true
+    generateSpringApplicationClient = true
+}
